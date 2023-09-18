@@ -1,9 +1,11 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
-import pytest
 from src.item import Item
 
 
-def test_Item():
+def test_item():
+    """
+    Проверяем инициализацию класса
+    """
     item = Item('Television', 20000, 3)
     assert item.name == 'Television'
     assert item.price == 20000
@@ -11,11 +13,17 @@ def test_Item():
 
 
 def test_calculate_total_price():
+    """
+    Проверяем метод расчёта общей стоимости товара по конкретному товару
+    """
     item = Item('Television', 20000, 3)
     assert item.calculate_total_price() == 60000
 
 
 def test_apply_discount():
+    """
+    Проверяем метод применения скидки на конкретный товар
+    """
     item = Item('Television', 20000, 3)
     Item.pay_rate = 1.5
     item.apply_discount()
