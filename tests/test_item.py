@@ -28,3 +28,16 @@ def test_apply_discount():
     Item.pay_rate = 1.5
     item.apply_discount()
     assert item.price == 30000
+
+
+def test_name():
+    item = Item('Television', 20000, 3)
+    item.name = 'Смартфон'
+    assert item.name == 'Смартфон'
+    item.name = 'СуперСмартфон'
+    assert item.name == 'СуперСмарт'
+
+
+def test_string_to_number():
+    assert Item.string_to_number('1') == 1
+    assert Item.string_to_number('5.0') == 5
