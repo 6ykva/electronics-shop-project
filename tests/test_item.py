@@ -41,3 +41,13 @@ def test_name():
 def test_string_to_number():
     assert Item.string_to_number('1') == 1
     assert Item.string_to_number('5.0') == 5
+
+
+def test_repr():
+    item1 = Item("Магнитофон", 10500, 10)
+    assert repr(item1) == "Item('Магнитофон', 10500, 10)"
+
+
+def test_str():
+    item1 = Item('Магнитофон', 10500, 10)
+    assert str(item1) == 'Магнитофон'
