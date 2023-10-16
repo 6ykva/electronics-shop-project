@@ -2,7 +2,6 @@
 import pytest
 
 from src.item import Item
-from src.phone import Phone
 
 
 def test_item():
