@@ -71,7 +71,7 @@ class Item:
             raise FileNotFoundError("Отсутствует файл item.csv")
 
         except KeyError:
-            raise InstantiateCSVError("Файл item.csv поврежден")
+            raise InstantiateCSVError()
 
     @staticmethod
     def string_to_number(number):
@@ -84,8 +84,9 @@ class InstantiateCSVError(Exception):
     """
     Класс-исключение InstantiateCSVError
     """
-    def __init__(self, *args, **kwargs):
-        self.message = args[0] if args else "Файл item.csv поврежден"
+
+    def __init__(self):
+        pass
 
     def __str__(self):
-        return self.message
+        return "Файл item.csv поврежден"
