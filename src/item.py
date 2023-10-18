@@ -61,13 +61,31 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, path):
-        with open(path, encoding='cp1251') as file:
-            line = csv.DictReader(file)
-            for f in line:
-                cls.all.append(cls(f['name'], f['price'], f['quantity']))
+        try:
+            with open(path, encoding='cp1251') as file:
+                line = csv.DictReader(file)
+                for f in line:
+                    cls.all.append(cls(f['name'], f['price'], f['quantity']))
+
+        except FileNotFoundError:
+            raise FileNotFoundError("Отсутствует файл item.csv")
+
+        except KeyError:
+            raise InstantiateCSVError("Файл item.csv поврежден")
 
     @staticmethod
     def string_to_number(number):
         f = float(number)
         a = int(f)
         return a
+
+
+class InstantiateCSVError(Exception):
+    """
+    Класс-исключение InstantiateCSVError
+    """
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else "Файл item.csv поврежден"
+
+    def __str__(self):
+        return self.message
